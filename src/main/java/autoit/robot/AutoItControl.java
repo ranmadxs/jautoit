@@ -5,10 +5,7 @@ import java.awt.Point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import autoit.test.CaptureControlTest;
-
 public class AutoItControl extends AutoItExecute{
-
 
 	private final Logger log = LoggerFactory.getLogger(AutoItControl.class);
 	
@@ -20,55 +17,63 @@ public class AutoItControl extends AutoItExecute{
 	private Long id;
 	private Point point;
 	private String text;
+
 	
 	
-	public String getText() {
+	/**
+	 * 
+	 * @param clase Nombre de la clase
+	 * @param id ObjectID
+	 * @return String
+	 */
+	public String getControlText(String clase, Long id) {
+		String cmdName = "getControlText";
+		String param = null;
+		if (id != null){
+			param = clase.concat(" ").concat(String.valueOf(id));
+		}
+		String text = super.execute(cmdName, param);
 		return text;
 	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public String getClase() {
-		return clase;
-	}
-	public void setClase(String clase) {
-		this.clase = clase;
-	}
-	public Long getInstance() {
-		return instance;
-	}
-	public void setInstance(Long instance) {
-		this.instance = instance;
-	}
-	public String getClassNameNN() {
-		return classNameNN;
-	}
-	public void setClassNameNN(String classNameNN) {
-		this.classNameNN = classNameNN;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAdvancedMode() {
-		return advancedMode;
-	}
-	public void setAdvancedMode(String advancedMode) {
-		this.advancedMode = advancedMode;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Point getPoint() {
-		return point;
-	}
-	public void setPoint(Point point) {
-		this.point = point;
-	}
+	
+	public void setControlText(String clase, Long id, String txt) {
+		String cmdName = "setControlText";
+		String param = null;
+		if (id != null){
+			param = clase.concat(" ").concat(String.valueOf(id)).concat(" ").concat(txt);
+		}
+		super.execute(cmdName, param);		
+	}	
+	/**
+	 * 
+	 * @param clase Nombre de la clase
+	 * @param classNameNN
+	 * @return String
+	 */
+	public void setControlText(String clase, String classNameNN, String txt) {
+		String cmdName = "setControlText";
+		String param = null;
+		if (classNameNN != null){
+			param = clase.concat(" ").concat(String.valueOf(classNameNN).concat(" ").concat(txt));
+		}
+		//path = path.concat("tmp\\au3\\");
+		super.execute(cmdName, param);
+	}	
+	
+	/**
+	 * 
+	 * @param clase Nombre de la clase
+	 * @param classNameNN
+	 * @return String
+	 */
+	public String getControlText(String clase, String classNameNN) {
+		String cmdName = "getControlText";
+		String param = null;
+		if (classNameNN != null){
+			param = clase.concat(" ").concat(String.valueOf(classNameNN));
+		}
+		String text = super.execute(cmdName, param);
+		return text;
+	}	
 		
 }

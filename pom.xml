@@ -42,7 +42,31 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+		      <plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>3.0.2</version>
+		        <executions>
+		          <execution>
+		            <id>copy-resources</id>
+		            <phase>validate</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>C:\tmp\resources\automation</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>src/main/resources/automation</directory>
+		                  <filtering>true</filtering>
+		                </resource>
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
+		      </plugin>			
+			
 		</plugins>
+		
 	</build>
 
 </project>
